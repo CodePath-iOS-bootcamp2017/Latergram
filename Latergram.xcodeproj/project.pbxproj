@@ -8,13 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		243AA5DB1E76573400FEB347 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243AA5DA1E76573400FEB347 /* AppDelegate.swift */; };
-		243AA5DD1E76573400FEB347 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243AA5DC1E76573400FEB347 /* ViewController.swift */; };
 		243AA5E01E76573400FEB347 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 243AA5DE1E76573400FEB347 /* Main.storyboard */; };
 		243AA5E31E76573400FEB347 /* Latergram.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 243AA5E11E76573400FEB347 /* Latergram.xcdatamodeld */; };
 		243AA5E51E76573400FEB347 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 243AA5E41E76573400FEB347 /* Assets.xcassets */; };
 		243AA5E81E76573400FEB347 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 243AA5E61E76573400FEB347 /* LaunchScreen.storyboard */; };
 		243AA5F31E76573400FEB347 /* LatergramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243AA5F21E76573400FEB347 /* LatergramTests.swift */; };
 		243AA5FE1E76573400FEB347 /* LatergramUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243AA5FD1E76573400FEB347 /* LatergramUITests.swift */; };
+		243AA6101E766D5200FEB347 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243AA60F1E766D5200FEB347 /* LoginViewController.swift */; };
+		243AA6121E766F8500FEB347 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243AA6111E766F8500FEB347 /* HomeViewController.swift */; };
+		243AA6141E76725200FEB347 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243AA6131E76725200FEB347 /* ProfileViewController.swift */; };
+		243AA6181E76727E00FEB347 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243AA6171E76727E00FEB347 /* CameraViewController.swift */; };
+		243AA61A1E76728B00FEB347 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243AA6191E76728B00FEB347 /* GalleryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +41,6 @@
 /* Begin PBXFileReference section */
 		243AA5D71E76573400FEB347 /* Latergram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Latergram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		243AA5DA1E76573400FEB347 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		243AA5DC1E76573400FEB347 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		243AA5DF1E76573400FEB347 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		243AA5E21E76573400FEB347 /* Latergram.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Latergram.xcdatamodel; sourceTree = "<group>"; };
 		243AA5E41E76573400FEB347 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +52,11 @@
 		243AA5F91E76573400FEB347 /* LatergramUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LatergramUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		243AA5FD1E76573400FEB347 /* LatergramUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatergramUITests.swift; sourceTree = "<group>"; };
 		243AA5FF1E76573400FEB347 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		243AA60F1E766D5200FEB347 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		243AA6111E766F8500FEB347 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		243AA6131E76725200FEB347 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		243AA6171E76727E00FEB347 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		243AA6191E76728B00FEB347 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +107,11 @@
 		243AA5D91E76573400FEB347 /* Latergram */ = {
 			isa = PBXGroup;
 			children = (
+				243AA60E1E766D3D00FEB347 /* Client API */,
+				243AA60D1E766D3700FEB347 /* models */,
+				243AA60C1E766D2B00FEB347 /* view controllers */,
+				243AA60B1E766D2100FEB347 /* views */,
 				243AA5DA1E76573400FEB347 /* AppDelegate.swift */,
-				243AA5DC1E76573400FEB347 /* ViewController.swift */,
 				243AA5DE1E76573400FEB347 /* Main.storyboard */,
 				243AA5E41E76573400FEB347 /* Assets.xcassets */,
 				243AA5E61E76573400FEB347 /* LaunchScreen.storyboard */,
@@ -126,6 +137,39 @@
 				243AA5FF1E76573400FEB347 /* Info.plist */,
 			);
 			path = LatergramUITests;
+			sourceTree = "<group>";
+		};
+		243AA60B1E766D2100FEB347 /* views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
+		243AA60C1E766D2B00FEB347 /* view controllers */ = {
+			isa = PBXGroup;
+			children = (
+				243AA60F1E766D5200FEB347 /* LoginViewController.swift */,
+				243AA6111E766F8500FEB347 /* HomeViewController.swift */,
+				243AA6131E76725200FEB347 /* ProfileViewController.swift */,
+				243AA6171E76727E00FEB347 /* CameraViewController.swift */,
+				243AA6191E76728B00FEB347 /* GalleryViewController.swift */,
+			);
+			name = "view controllers";
+			sourceTree = "<group>";
+		};
+		243AA60D1E766D3700FEB347 /* models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = models;
+			sourceTree = "<group>";
+		};
+		243AA60E1E766D3D00FEB347 /* Client API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Client API";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,9 +306,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				243AA6101E766D5200FEB347 /* LoginViewController.swift in Sources */,
 				243AA5E31E76573400FEB347 /* Latergram.xcdatamodeld in Sources */,
-				243AA5DD1E76573400FEB347 /* ViewController.swift in Sources */,
+				243AA6141E76725200FEB347 /* ProfileViewController.swift in Sources */,
+				243AA6181E76727E00FEB347 /* CameraViewController.swift in Sources */,
+				243AA61A1E76728B00FEB347 /* GalleryViewController.swift in Sources */,
 				243AA5DB1E76573400FEB347 /* AppDelegate.swift in Sources */,
+				243AA6121E766F8500FEB347 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
