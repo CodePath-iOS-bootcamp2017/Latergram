@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Parse
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,7 +17,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        Parse.initialize(with: ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) in
+            configuration.applicationId = "latergram-laidback"
+            configuration.clientKey = "asuhjakscnkuqw9038647qwbd74bhw"
+            configuration.server = "http://latergram-laidback.herokuapp.com/parse"
+        }))
+        
+        if PFUser.current() != nil {
+            print("we have a cached user")
+            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "HomeNavigationController") as! UINavigationController
+            self.window?.rootViewController = vc
+        }else{
+            print("no user in cache")
+        }
+            
         return true
     }
 

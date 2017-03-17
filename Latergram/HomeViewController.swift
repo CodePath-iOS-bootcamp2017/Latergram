@@ -10,10 +10,16 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var homeTableView: UITableView!
+    @IBOutlet weak var homeImageView: UIImageView!
+    @IBOutlet weak var uploadImageView: UIImageView!
+    @IBOutlet weak var profileImageView: UIImageView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.setupTableView()
+        self.setupGestureRecognizers()
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,6 +27,20 @@ class HomeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func setupTableView(){
+        self.homeTableView.tableFooterView = UIView()
+    }
+    
+    func setupGestureRecognizers(){
+        let uploadTapGesture = UITapGestureRecognizer()
+        uploadTapGesture.addTarget(self, action: #selector(onUploadTapped))
+        self.uploadImageView.addGestureRecognizer(uploadTapGesture)
+        self.uploadImageView.isUserInteractionEnabled = true
+    }
+    
+    func onUploadTapped(_ sender: Any){
+        performSegue(withIdentifier: "newPostSegue", sender: sender)
+    }
 
     /*
     // MARK: - Navigation

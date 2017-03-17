@@ -1,0 +1,6 @@
+framework module Pods_LatergramUITests {
+  umbrella header "Pods-LatergramUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		243575B81E7B78060065C33F /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243575B71E7B78060065C33F /* ShareViewController.swift */; };
 		243AA5DB1E76573400FEB347 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243AA5DA1E76573400FEB347 /* AppDelegate.swift */; };
 		243AA5E01E76573400FEB347 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 243AA5DE1E76573400FEB347 /* Main.storyboard */; };
 		243AA5E31E76573400FEB347 /* Latergram.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 243AA5E11E76573400FEB347 /* Latergram.xcdatamodeld */; };
@@ -19,6 +20,12 @@
 		243AA6141E76725200FEB347 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243AA6131E76725200FEB347 /* ProfileViewController.swift */; };
 		243AA6181E76727E00FEB347 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243AA6171E76727E00FEB347 /* CameraViewController.swift */; };
 		243AA61A1E76728B00FEB347 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243AA6191E76728B00FEB347 /* GalleryViewController.swift */; };
+		246674711E779300005D847E /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246674701E779300005D847E /* ParseClient.swift */; };
+		246674731E7793BA005D847E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246674721E7793BA005D847E /* User.swift */; };
+		24F520121E78D3C500D0E2EC /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F520111E78D3C500D0E2EC /* GalleryCollectionViewCell.swift */; };
+		6D1E8E093EEA1CE41E5A44F7 /* Pods_Latergram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E14CB40E59C2DA538640D18 /* Pods_Latergram.framework */; };
+		903731713516D38DFCE5AE89 /* Pods_LatergramTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CD9E3374465EE33FA7C4CBD /* Pods_LatergramTests.framework */; };
+		AC8F0EF0B3E60F1B08E7C210 /* Pods_LatergramUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1388D904805E1F541C82012 /* Pods_LatergramUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		243575B71E7B78060065C33F /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		243AA5D71E76573400FEB347 /* Latergram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Latergram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		243AA5DA1E76573400FEB347 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		243AA5DF1E76573400FEB347 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -57,6 +65,18 @@
 		243AA6131E76725200FEB347 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		243AA6171E76727E00FEB347 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		243AA6191E76728B00FEB347 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		246674701E779300005D847E /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
+		246674721E7793BA005D847E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		24F520111E78D3C500D0E2EC /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
+		3C88BE50A0FA4C988787A15B /* Pods-LatergramUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatergramUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LatergramUITests/Pods-LatergramUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		45766DD85B487BC159748412 /* Pods-Latergram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Latergram.release.xcconfig"; path = "Pods/Target Support Files/Pods-Latergram/Pods-Latergram.release.xcconfig"; sourceTree = "<group>"; };
+		4E14CB40E59C2DA538640D18 /* Pods_Latergram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Latergram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CD9E3374465EE33FA7C4CBD /* Pods_LatergramTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LatergramTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1388D904805E1F541C82012 /* Pods_LatergramUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LatergramUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2FC09827B27C7A2F627DB4D /* Pods-LatergramUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatergramUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LatergramUITests/Pods-LatergramUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E0E5217821D05E4CDC121C7F /* Pods-LatergramTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatergramTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LatergramTests/Pods-LatergramTests.release.xcconfig"; sourceTree = "<group>"; };
+		E3552FFAF86A0DE962FD11E9 /* Pods-LatergramTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatergramTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LatergramTests/Pods-LatergramTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FB3CAD982D060127A05884A4 /* Pods-Latergram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Latergram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Latergram/Pods-Latergram.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D1E8E093EEA1CE41E5A44F7 /* Pods_Latergram.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				903731713516D38DFCE5AE89 /* Pods_LatergramTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC8F0EF0B3E60F1B08E7C210 /* Pods_LatergramUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +114,8 @@
 				243AA5F11E76573400FEB347 /* LatergramTests */,
 				243AA5FC1E76573400FEB347 /* LatergramUITests */,
 				243AA5D81E76573400FEB347 /* Products */,
+				F701E34AF2979B0DA7032C05 /* Pods */,
+				2AFC2B7C60503F8C9041D0DC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -142,6 +167,7 @@
 		243AA60B1E766D2100FEB347 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				24F520111E78D3C500D0E2EC /* GalleryCollectionViewCell.swift */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -154,6 +180,7 @@
 				243AA6131E76725200FEB347 /* ProfileViewController.swift */,
 				243AA6171E76727E00FEB347 /* CameraViewController.swift */,
 				243AA6191E76728B00FEB347 /* GalleryViewController.swift */,
+				243575B71E7B78060065C33F /* ShareViewController.swift */,
 			);
 			name = "view controllers";
 			sourceTree = "<group>";
@@ -161,6 +188,7 @@
 		243AA60D1E766D3700FEB347 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				246674721E7793BA005D847E /* User.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -168,8 +196,32 @@
 		243AA60E1E766D3D00FEB347 /* Client API */ = {
 			isa = PBXGroup;
 			children = (
+				246674701E779300005D847E /* ParseClient.swift */,
 			);
 			name = "Client API";
+			sourceTree = "<group>";
+		};
+		2AFC2B7C60503F8C9041D0DC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4E14CB40E59C2DA538640D18 /* Pods_Latergram.framework */,
+				9CD9E3374465EE33FA7C4CBD /* Pods_LatergramTests.framework */,
+				A1388D904805E1F541C82012 /* Pods_LatergramUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F701E34AF2979B0DA7032C05 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FB3CAD982D060127A05884A4 /* Pods-Latergram.debug.xcconfig */,
+				45766DD85B487BC159748412 /* Pods-Latergram.release.xcconfig */,
+				E3552FFAF86A0DE962FD11E9 /* Pods-LatergramTests.debug.xcconfig */,
+				E0E5217821D05E4CDC121C7F /* Pods-LatergramTests.release.xcconfig */,
+				3C88BE50A0FA4C988787A15B /* Pods-LatergramUITests.debug.xcconfig */,
+				D2FC09827B27C7A2F627DB4D /* Pods-LatergramUITests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,9 +231,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 243AA6021E76573400FEB347 /* Build configuration list for PBXNativeTarget "Latergram" */;
 			buildPhases = (
+				40D9E64E8F40FF4E09AD8B6D /* [CP] Check Pods Manifest.lock */,
 				243AA5D31E76573400FEB347 /* Sources */,
 				243AA5D41E76573400FEB347 /* Frameworks */,
 				243AA5D51E76573400FEB347 /* Resources */,
+				4B0CF8D898808BD0D4EA65B5 /* [CP] Embed Pods Frameworks */,
+				3410AA72491CAA238FAEF3F6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -196,9 +251,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 243AA6051E76573400FEB347 /* Build configuration list for PBXNativeTarget "LatergramTests" */;
 			buildPhases = (
+				0D39DC3DC599A7F0761B4516 /* [CP] Check Pods Manifest.lock */,
 				243AA5EA1E76573400FEB347 /* Sources */,
 				243AA5EB1E76573400FEB347 /* Frameworks */,
 				243AA5EC1E76573400FEB347 /* Resources */,
+				EC6CD08BE0F6FBC38C7D1134 /* [CP] Embed Pods Frameworks */,
+				AAB989E7DAB9F8907EE7429B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -214,9 +272,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 243AA6081E76573400FEB347 /* Build configuration list for PBXNativeTarget "LatergramUITests" */;
 			buildPhases = (
+				DCC0EF52E60C73E9C8E55991 /* [CP] Check Pods Manifest.lock */,
 				243AA5F51E76573400FEB347 /* Sources */,
 				243AA5F61E76573400FEB347 /* Frameworks */,
 				243AA5F71E76573400FEB347 /* Resources */,
+				A5F4DF7F407C05A1927558A4 /* [CP] Embed Pods Frameworks */,
+				4AFE5827E6A3B758FB2AFAD9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -301,17 +362,159 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0D39DC3DC599A7F0761B4516 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3410AA72491CAA238FAEF3F6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Latergram/Pods-Latergram-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		40D9E64E8F40FF4E09AD8B6D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4AFE5827E6A3B758FB2AFAD9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LatergramUITests/Pods-LatergramUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4B0CF8D898808BD0D4EA65B5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Latergram/Pods-Latergram-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A5F4DF7F407C05A1927558A4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LatergramUITests/Pods-LatergramUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AAB989E7DAB9F8907EE7429B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LatergramTests/Pods-LatergramTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DCC0EF52E60C73E9C8E55991 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EC6CD08BE0F6FBC38C7D1134 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LatergramTests/Pods-LatergramTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		243AA5D31E76573400FEB347 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				243AA6101E766D5200FEB347 /* LoginViewController.swift in Sources */,
+				243575B81E7B78060065C33F /* ShareViewController.swift in Sources */,
+				24F520121E78D3C500D0E2EC /* GalleryCollectionViewCell.swift in Sources */,
 				243AA5E31E76573400FEB347 /* Latergram.xcdatamodeld in Sources */,
 				243AA6141E76725200FEB347 /* ProfileViewController.swift in Sources */,
 				243AA6181E76727E00FEB347 /* CameraViewController.swift in Sources */,
 				243AA61A1E76728B00FEB347 /* GalleryViewController.swift in Sources */,
+				246674731E7793BA005D847E /* User.swift in Sources */,
 				243AA5DB1E76573400FEB347 /* AppDelegate.swift in Sources */,
+				246674711E779300005D847E /* ParseClient.swift in Sources */,
 				243AA6121E766F8500FEB347 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -460,6 +663,7 @@
 		};
 		243AA6031E76573400FEB347 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB3CAD982D060127A05884A4 /* Pods-Latergram.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Latergram/Info.plist;
@@ -472,6 +676,7 @@
 		};
 		243AA6041E76573400FEB347 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 45766DD85B487BC159748412 /* Pods-Latergram.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Latergram/Info.plist;
@@ -484,6 +689,7 @@
 		};
 		243AA6061E76573400FEB347 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E3552FFAF86A0DE962FD11E9 /* Pods-LatergramTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -498,6 +704,7 @@
 		};
 		243AA6071E76573400FEB347 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E0E5217821D05E4CDC121C7F /* Pods-LatergramTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -512,6 +719,7 @@
 		};
 		243AA6091E76573400FEB347 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C88BE50A0FA4C988787A15B /* Pods-LatergramUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = LatergramUITests/Info.plist;
@@ -525,6 +733,7 @@
 		};
 		243AA60A1E76573400FEB347 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D2FC09827B27C7A2F627DB4D /* Pods-LatergramUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = LatergramUITests/Info.plist;
@@ -555,6 +764,7 @@
 				243AA6041E76573400FEB347 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		243AA6051E76573400FEB347 /* Build configuration list for PBXNativeTarget "LatergramTests" */ = {
 			isa = XCConfigurationList;
@@ -563,6 +773,7 @@
 				243AA6071E76573400FEB347 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		243AA6081E76573400FEB347 /* Build configuration list for PBXNativeTarget "LatergramUITests" */ = {
 			isa = XCConfigurationList;
@@ -571,6 +782,7 @@
 				243AA60A1E76573400FEB347 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
