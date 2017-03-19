@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class ShareViewController: UIViewController, UITextViewDelegate {
 
@@ -50,6 +51,13 @@ class ShareViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func onShareButtonTapped(_ sender: Any) {
+
+        Post.createNewPost(picture: self.shareImage, caption: self.captionTextView.text, success: { (response: PFObject) in
+            print("Posted successfully. Post ID: \(response.objectId)")
+            self.dismiss(animated: true, completion: nil)
+        }) { (error: Error) in
+            print(error.localizedDescription)
+        }
     }
     
     /*

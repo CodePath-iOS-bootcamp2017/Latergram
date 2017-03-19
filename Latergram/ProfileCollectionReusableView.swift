@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import ParseUI
 
 class ProfileCollectionReusableView: UICollectionReusableView {
-    @IBOutlet weak var userProfileImageView: UIImageView!
+    
+    @IBOutlet weak var userProfileImageView: PFImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var postCountLabel: UILabel!

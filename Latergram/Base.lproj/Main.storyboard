@@ -107,14 +107,14 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="234" id="5jd-c5-g2G">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HomeTableViewCell" rowHeight="234" id="5jd-c5-g2G" customClass="HomeTableViewCell" customModule="Latergram" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="234"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5jd-c5-g2G" id="0bz-z1-oFS">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="233.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xdl-ZN-nPE">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xdl-ZN-nPE" customClass="PFImageView">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="200" id="rdR-fy-PpE"/>
@@ -137,6 +137,10 @@
                                                 <constraint firstItem="rdx-Ze-m8i" firstAttribute="top" secondItem="xdl-ZN-nPE" secondAttribute="bottom" constant="8" id="uaE-J4-ztj"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="captionLabel" destination="rdx-Ze-m8i" id="fxW-7X-xJs"/>
+                                            <outlet property="postImageView" destination="xdl-ZN-nPE" id="mwa-dg-Ove"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -226,14 +230,14 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="aeL-7n-tlx" customClass="ProfileCollectionViewCell" customModule="Latergram" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProfileCollectionViewCell" id="aeL-7n-tlx" customClass="ProfileCollectionViewCell" customModule="Latergram" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="171" width="141" height="129"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="141" height="129"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8vO-vs-uuE">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8vO-vs-uuE" customClass="PFImageView">
                                                     <rect key="frame" x="0.0" y="0.0" width="141" height="129"/>
                                                 </imageView>
                                             </subviews>
@@ -245,15 +249,15 @@
                                             <constraint firstItem="8vO-vs-uuE" firstAttribute="top" secondItem="aeL-7n-tlx" secondAttribute="top" id="zgC-KO-i7Q"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="postImageView" destination="8vO-vs-uuE" id="n5A-3V-20P"/>
+                                            <outlet property="postImageView" destination="8vO-vs-uuE" id="szX-yW-T41"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="a4U-DC-7oU" customClass="ProfileCollectionReusableView" customModule="Latergram" customModuleProvider="target">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderView" id="a4U-DC-7oU" customClass="ProfileCollectionReusableView" customModule="Latergram" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="171"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fxh-bY-YgW">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fxh-bY-YgW" customClass="PFImageView">
                                             <rect key="frame" x="8" y="8" width="100" height="100"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="100" id="rCl-a5-5FR"/>
@@ -326,7 +330,7 @@
                                         <outlet property="descriptionLabel" destination="Bae-bi-993" id="4M1-IE-cnl"/>
                                         <outlet property="nameLabel" destination="U4T-6j-EYa" id="q7j-Ci-HQA"/>
                                         <outlet property="postCountLabel" destination="NoN-BZ-H9W" id="NgC-hV-9PN"/>
-                                        <outlet property="userProfileImageView" destination="fxh-bY-YgW" id="SKM-10-yoC"/>
+                                        <outlet property="userProfileImageView" destination="fxh-bY-YgW" id="0i7-1L-bre"/>
                                     </connections>
                                 </collectionReusableView>
                             </collectionView>

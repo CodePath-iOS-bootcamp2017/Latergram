@@ -11,6 +11,7 @@ import Parse
 
 class ParseClient: NSObject {
     static var sharedInstance = ParseClient()
+    fileprivate let postClassName = "Post"
     
     func login(username: String, password: String, success: @escaping (PFUser) -> Void, failure: @escaping (Error) -> Void){
         print("login initiated...")
@@ -47,9 +48,12 @@ class ParseClient: NSObject {
         }
     }
     
-    func newPost(media: PFFile, caption: String?, success: @escaping (PFObject)-> Void, failure: @escaping (Error) -> Void){
-        let post = PFObject(className: "Post")
-        post["media"] = media
+    func newPost(media: PFFile?, caption: String?, success: @escaping (PFObject)-> Void, failure: @escaping (Error) -> Void){
+        let post = PFObject(className: postClassName)
+        
+        if let postImage = media {
+            post["media"] = postImage
+        }
         
         if let postCaption = caption{
             post["caption"] = postCaption
@@ -66,6 +70,64 @@ class ParseClient: NSObject {
                     success(post)
                 }
             }
+        }
+    }
+    
+    func getPosts(success: @escaping ([PFObject]) -> Void, failure: @escaping (Error) -> Void){
+        let query = PFQuery(className: postClassName)
+        query.order(byDescending: "createdAt")
+        query.includeKey("author")
+        query.includeKey("caption")
+        query.includeKey("likes_count")
+        query.includeKey("comments_count")
+        query.limit = 20
+        query.findObjectsInBackground { (response: [PFObject]?, error: Error?) in
+            if let error = error{
+                failure(error)
+            }else{
+                if let posts = response{
+                    success(posts)
+                }
+            }
+        }
+    }
+    
+    func getUserPosts(user: PFUser, success: @escaping ([PFObject]) -> Void, failure: @escaping (Error) -> Void) {
+        let query = PFQuery(className: postClassName)
+        query.whereKey("author", equalTo: user)
+        query.order(byDescending: "createdAt")
+        query.includeKey("author")
+        query.includeKey("caption")
+        query.includeKey("likes_count")
+        query.includeKey("comments_count")
+        query.limit = 20
+        query.findObjectsInBackground { (response: [PFObject]?, error: Error?) in
+            if let error = error{
+                failure(error)
+            }else{
+                if let response = response{
+                    success(response)
+                }
+            }
+        }
+    }
+    
+    func getUser(userId: String, success: @escaping (PFUser) -> Void, failure: @escaping (Error) -> Void){
+        if let query = PFUser.query(){
+            query.includeKey("bio")
+            query.includeKey("profile_image")
+            query.includeKey("name")
+            query.getObjectInBackground(withId: userId, block: { (response: PFObject?, error: Error?) in
+                if let error = error {
+                    failure(error)
+                }else{
+                    if let response = response as? PFUser{
+                        success(response)
+                    }else{
+                        print("can't cast PFObject to PFUser")
+                    }
+                }
+            })
         }
     }
 }

@@ -7,19 +7,23 @@
 //
 
 import UIKit
+import SVProgressHUD
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var homeTableView: UITableView!
     @IBOutlet weak var homeImageView: UIImageView!
     @IBOutlet weak var uploadImageView: UIImageView!
     @IBOutlet weak var profileImageView: UIImageView!
-    
+
+    var posts: [Post]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupTableView()
         self.setupGestureRecognizers()
+        self.configureRefreshControl()
+        self.loadDataFromNetwork()
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,6 +33,25 @@ class HomeViewController: UIViewController {
     
     func setupTableView(){
         self.homeTableView.tableFooterView = UIView()
+        self.homeTableView.delegate = self
+        self.homeTableView.dataSource = self
+        
+        self.homeTableView.estimatedRowHeight = 120
+        self.homeTableView.rowHeight = UITableViewAutomaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.posts == nil {
+            return 0
+        }else{
+            return self.posts!.count
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath) as! HomeTableViewCell
+        cell.post = self.posts?[indexPath.row]
+        return cell
     }
     
     func setupGestureRecognizers(){
@@ -43,12 +66,35 @@ class HomeViewController: UIViewController {
         self.profileImageView.isUserInteractionEnabled = true
     }
     
+    func configureRefreshControl(){
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(onRefresh), for: UIControlEvents.valueChanged)
+        self.homeTableView.insertSubview(refreshControl, at: 0)
+    }
+    
+    func onRefresh(refreshControl: UIRefreshControl){
+        self.loadDataFromNetwork()
+        refreshControl.endRefreshing()
+    }
+    
     func onUploadTapped(_ sender: Any){
         performSegue(withIdentifier: "newPostSegue", sender: sender)
     }
 
     func onProfileTapped(_ sender: Any) {
         performSegue(withIdentifier: "showProfileSegue", sender: sender)
+    }
+    
+    func loadDataFromNetwork(){
+        SVProgressHUD.show()
+        Post.fetchPosts(success: { (response: [Post]) in
+            self.posts = response
+            self.homeTableView.reloadData()
+            SVProgressHUD.dismiss()
+        }) { (error: Error) in
+            print("Error fetching posts: \(error.localizedDescription)")
+            SVProgressHUD.dismiss()
+        }
     }
     /*
     // MARK: - Navigation

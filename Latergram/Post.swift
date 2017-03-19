@@ -10,6 +10,7 @@ import UIKit
 import Parse
 
 class Post: NSObject {
+    var id: String?
     var media: PFFile?
     var author: User?
     var caption: String?
@@ -17,6 +18,9 @@ class Post: NSObject {
     var commentsCount: Int?
     
     init(postPFPbject: PFObject) {
+        
+        self.id = postPFPbject.objectId
+        
         if let media = postPFPbject["media"] as? PFFile{
             self.media = media
         }
@@ -38,9 +42,44 @@ class Post: NSObject {
         }
     }
     
-    class func createNewPost(picture: PFFile, caption: String, success: @escaping (PFObject) -> Void, failure: @escaping (Error)->Void){
-        ParseClient.sharedInstance.newPost(media: picture, caption: caption, success: { (response: PFObject) in
+    class func getArrayOfPosts(postPFObjects: [PFObject]) -> [Post] {
+        var posts: [Post] = []
+        
+        for item in postPFObjects {
+            posts.append(Post(postPFPbject: item))
+        }
+        return posts
+    }
+    
+    class func createNewPost(picture: UIImage?, caption: String?, success: @escaping (PFObject) -> Void, failure: @escaping (Error)->Void){
+        
+        ParseClient.sharedInstance.newPost(media: getPFFileFromImage(image: picture), caption: caption, success: { (response: PFObject) in
             success(response)
+        }) { (error: Error) in
+            failure(error)
+        }
+    }
+    
+    class func getPFFileFromImage(image: UIImage?)->PFFile?{
+        if let image = image{
+            if let pngImageData = UIImagePNGRepresentation(image) {
+                return PFFile(name: "image.png", data: pngImageData)
+            }
+        }
+        return nil
+    }
+    
+    class func fetchPosts(success: @escaping ([Post]) -> Void, failure: @escaping (Error) -> Void){
+        ParseClient.sharedInstance.getPosts(success: { (reponse: [PFObject]) in
+            success(getArrayOfPosts(postPFObjects: reponse))
+        }) { (error: Error) in
+            failure(error)
+        }
+    }
+    
+    class func fetchUserPosts(user: PFUser, success: @escaping ([Post]) -> Void, failure: @escaping (Error) -> Void){
+        ParseClient.sharedInstance.getUserPosts(user: user, success: { (response: [PFObject]) in
+            success(getArrayOfPosts(postPFObjects: response))
         }) { (error: Error) in
             failure(error)
         }

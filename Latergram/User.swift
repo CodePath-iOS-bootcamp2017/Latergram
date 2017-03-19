@@ -10,6 +10,7 @@ import UIKit
 import Parse
 
 class User: NSObject {
+    var id: String?
     var name: String?
     var username: String?
     var profileImage: PFFile?
@@ -19,6 +20,8 @@ class User: NSObject {
     var gender: String?
     
     init(userPFObject: PFUser) {
+        self.id = userPFObject.objectId
+        
         if let name = userPFObject["name"] as? String{
             self.name = name
         }
@@ -47,6 +50,14 @@ class User: NSObject {
         
         if let gender = userPFObject["gender"] as? String{
             self.gender = gender
+        }
+    }
+    
+    class func fetchUser(userId: String, success: @escaping (User) -> Void, failure: @escaping (Error) -> Void){
+        ParseClient.sharedInstance.getUser(userId: userId, success: { (response: PFUser) in
+            success(User(userPFObject: response))
+        }) { (error: Error) in
+            failure(error)
         }
     }
 }
