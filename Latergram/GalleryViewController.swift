@@ -14,6 +14,7 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var selectedImageView: UIImageView!
     @IBOutlet weak var galleryCollectionView: UICollectionView!
     @IBOutlet weak var galleryCollectionViewFlowLayout: UICollectionViewFlowLayout!
+    @IBOutlet weak var nextBarButton: UIBarButtonItem!
     
     var images: [UIImage] = []
     var photo: UIImage?
@@ -39,7 +40,12 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(self.images.count)
+//        print(self.images.count)
+        if self.images.count == 0 {
+            self.nextBarButton.isEnabled = false
+        }else{
+            self.nextBarButton.isEnabled = true
+        }
         return self.images.count
     }
     
@@ -61,8 +67,8 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     func calculateCellSize() -> CGSize {
         let totalWidth = self.galleryCollectionView.bounds.width
-        let totalHeight = self.galleryCollectionView.bounds.height
-        return CGSize(width: totalWidth/3-2, height: totalHeight/3)
+        let cellSideLength = totalWidth/4-2
+        return CGSize(width: cellSideLength, height: cellSideLength)
     }
     
     func fetchCustomAlbumPhotos()

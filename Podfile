@@ -8,6 +8,7 @@ target 'Latergram' do
   # Pods for Latergram
     pod 'Parse'
     pod 'SVProgressHUD'
+    pod 'ParseUI'
 
   target 'LatergramTests' do
     inherit! :search_paths

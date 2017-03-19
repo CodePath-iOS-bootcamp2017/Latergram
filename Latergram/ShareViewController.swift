@@ -48,6 +48,10 @@ class ShareViewController: UIViewController, UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
          self.captionPlaceholderLabel.isHidden = !textView.text.isEmpty
     }
+    
+    @IBAction func onShareButtonTapped(_ sender: Any) {
+    }
+    
     /*
     // MARK: - Navigation
 

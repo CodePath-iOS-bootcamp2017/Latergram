@@ -36,12 +36,20 @@ class HomeViewController: UIViewController {
         uploadTapGesture.addTarget(self, action: #selector(onUploadTapped))
         self.uploadImageView.addGestureRecognizer(uploadTapGesture)
         self.uploadImageView.isUserInteractionEnabled = true
+        
+        let profileTapGesture = UITapGestureRecognizer()
+        profileTapGesture.addTarget(self, action: #selector(onProfileTapped))
+        self.profileImageView.addGestureRecognizer(profileTapGesture)
+        self.profileImageView.isUserInteractionEnabled = true
     }
     
     func onUploadTapped(_ sender: Any){
         performSegue(withIdentifier: "newPostSegue", sender: sender)
     }
 
+    func onProfileTapped(_ sender: Any) {
+        performSegue(withIdentifier: "showProfileSegue", sender: sender)
+    }
     /*
     // MARK: - Navigation
 

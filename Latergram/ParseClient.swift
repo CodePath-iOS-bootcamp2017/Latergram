@@ -46,4 +46,26 @@ class ParseClient: NSObject {
             }
         }
     }
+    
+    func newPost(media: PFFile, caption: String?, success: @escaping (PFObject)-> Void, failure: @escaping (Error) -> Void){
+        let post = PFObject(className: "Post")
+        post["media"] = media
+        
+        if let postCaption = caption{
+            post["caption"] = postCaption
+        }
+        
+        post["author"] = PFUser.current()
+        post["likes_count"] = 0
+        post["comments_count"] = 0
+        post.saveInBackground { (result: Bool, error: Error?) in
+            if let error = error{
+                failure(error)
+            }else{
+                if result {
+                    success(post)
+                }
+            }
+        }
+    }
 }
