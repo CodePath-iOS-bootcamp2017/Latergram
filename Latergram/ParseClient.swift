@@ -130,4 +130,62 @@ class ParseClient: NSObject {
             })
         }
     }
+    
+    func updateProfile(user: User, success: @escaping (PFUser) -> Void, failure: @escaping (Error) -> Void){
+        if let me = PFUser.current() {
+            if let name = user.name{
+                me["name"] = name
+            }
+            
+            if let username = user.username{
+                me.username = username
+            }
+            
+            if let bio = user.bio{
+                me["bio"] = bio
+            }
+            
+            if let website = user.website{
+                me["website"] = website.absoluteString
+            }
+            
+            if let email = user.email{
+                me.email = email
+            }
+            
+            if let phone = user.phone{
+                me["phone"] = phone
+            }
+            
+            if let gender = user.gender{
+                me["gender"] = gender
+            }
+            
+            if let profileImage = user.profileImage{
+                me["profile_image"] = profileImage
+            }
+            
+            me.saveInBackground(block: { (result: Bool, error: Error?) in
+                if let error = error {
+                    failure(error)
+                }else{
+                    if result{
+                        success(me)
+                    }
+                }
+            })
+        }
+    }
+        
+    func getUserPostCount(user: PFUser, success: @escaping (Int) -> Void, failure: @escaping (Error) -> Void){
+        let query = PFQuery(className: postClassName)
+        query.whereKey("author", equalTo: user)
+        query.countObjectsInBackground { (count: Int32, error: Error?) in
+            if let error = error{
+                failure(error)
+            }else{
+                success(Int(count))
+            }
+        }
+    }
 }

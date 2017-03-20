@@ -27,6 +27,10 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         self.loadUserData()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        self.loadUserData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -35,7 +39,6 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     func setupCollectionView(){
         self.profileCollectionView.delegate = self
         self.profileCollectionView.dataSource = self
-        self.profileCollectionView.register(ProfileCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "HeaderView")
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -54,22 +57,51 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "HeaderView", for: indexPath) as! ProfileCollectionReusableView
+        
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "ProfileCollectionReusableView", for: indexPath) as! ProfileCollectionReusableView
         
         if let user = self.user{
             let user = User(userPFObject: user)
             if let name = user.name {
+                headerView.nameLabel.isHidden = false
                 headerView.nameLabel.text = name
+            }else{
+                headerView.nameLabel.isHidden = true
             }
             
             if let profileImage = user.profileImage{
+                headerView.userProfileImageView.layer.cornerRadius = 50.0
+                headerView.userProfileImageView.layer.masksToBounds = true
                 headerView.userProfileImageView.file = profileImage
                 headerView.userProfileImageView.loadInBackground()
+            }else{
+                headerView.userProfileImageView.image = UIImage(named: "avatar")
             }
             
             if let bio = user.bio{
+                headerView.descriptionLabel.isHidden = false
                 headerView.descriptionLabel.text = bio
+            }else{
+                headerView.descriptionLabel.isHidden = true
             }
+            
+            if self.user == PFUser.current(){
+                headerView.EditProfileButton.isHidden = false
+                headerView.EditProfileButton.layer.borderWidth = 1.0
+                headerView.EditProfileButton.layer.borderColor = UIColor.gray.cgColor
+                headerView.EditProfileButton.layer.cornerRadius = 5
+                headerView.EditProfileButton.layer.masksToBounds = true
+            }else{
+                headerView.EditProfileButton.isHidden = true
+            }
+            
+            ParseClient.sharedInstance.getUserPostCount(user: self.user!, success: { (postCount: Int) in
+                headerView.postCountLabel.text = "\(postCount)"
+            }, failure: { (error: Error) in
+                print("Error getting post count: \(error.localizedDescription)")
+                headerView.postCountLabel.text = "--"
+            })
+            
         }
         return headerView
     }
