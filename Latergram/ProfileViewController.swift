@@ -116,6 +116,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         homeGesture.addTarget(self, action: #selector(onHomeTapped))
         self.homeImageView.addGestureRecognizer(homeGesture)
         self.homeImageView.isUserInteractionEnabled = true
+        
+        let profileGesture = UITapGestureRecognizer()
+        profileGesture.addTarget(self, action: #selector(onProfileTapped))
+        self.profileImageView.addGestureRecognizer(profileGesture)
+        self.profileImageView.isUserInteractionEnabled = true
     }
     
     func onPlusTapped(_ sender: Any) {
@@ -124,6 +129,12 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     func onHomeTapped(_ sender: Any) {
         dismiss(animated: false, completion: nil)
+    }
+    
+    func onProfileTapped(_ sender: Any) {
+        self.userId = PFUser.current()?.objectId
+        self.user = PFUser.current()
+        self.profileCollectionView.reloadData()
     }
     
     func loadUserData(){
@@ -137,6 +148,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         }else{
             self.user = PFUser.current()!
             loadUserPosts(user: PFUser.current()!)
+            self.setupLogoutButton()
         }
     }
     
@@ -147,6 +159,23 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         }) { (error: Error) in
             print("Error in fetching user posts: \(error.localizedDescription)")
         }
+    }
+    
+    func setupLogoutButton(){
+        print("setupLogoutButton")
+        let logoutButton = UIButton(type: UIButtonType.system)
+        logoutButton.setTitle("logout", for: UIControlState.normal)
+        logoutButton.frame = CGRect(x: 0, y: 0, width: 50.0, height: 25.0)
+        logoutButton.addTarget(self, action: #selector(onLogoutTapped), for: UIControlEvents.touchDown)
+        logoutButton.isUserInteractionEnabled = true
+        let rightBarButtonItem = UIBarButtonItem()
+        rightBarButtonItem.customView = logoutButton
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem
+    }
+    
+    func onLogoutTapped(_ sender: Any){
+        PFUser.logOut()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "User_Logged_out"), object: nil)
     }
     
     /*

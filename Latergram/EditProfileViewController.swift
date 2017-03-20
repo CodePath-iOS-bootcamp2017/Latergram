@@ -8,6 +8,7 @@
 
 import UIKit
 import ParseUI
+import SVProgressHUD
 
 class EditProfileViewController: UIViewController, UIScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -95,11 +96,14 @@ class EditProfileViewController: UIViewController, UIScrollViewDelegate, UIImage
     
     @IBAction func onSaveButtonTapped(_ sender: Any) {
         if self.validateFormFields(){
+            SVProgressHUD.show()
             User.updateMyProfile(name: self.nameTextField.text, username: self.usernameTextField.text, bio: self.bioTextField.text, website: self.getUrlFromString(urlString: self.websiteTextField.text), email: self.emailTextField.text, phone: self.phoneTextField.text, gender: nil, profileImage: Post.getPFFileFromImage(image: self.profileImageView.image), success: { (updatedUser: PFUser) in
-                //            PFUser.current() = updatedUser
+                SVProgressHUD.dismiss()
                 self.dismiss(animated: true, completion: nil)
             }) { (error: Error) in
+                SVProgressHUD.dismiss()
                 print("Error updating profile information: \(error.localizedDescription)")
+                AlertView.sharedInstance.presentAlertController(viewController: self, title: "Error!", message: error.localizedDescription)
             }
         }else{
             AlertView.sharedInstance.presentAlertController(viewController: self, title: "Error!", message: "Invalid Website URL")

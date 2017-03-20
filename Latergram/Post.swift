@@ -16,6 +16,7 @@ class Post: NSObject {
     var caption: String?
     var likesCount: Int?
     var commentsCount: Int?
+    var timestamp: Date?
     
     init(postPFPbject: PFObject) {
         
@@ -40,6 +41,8 @@ class Post: NSObject {
         if let commentsCount = postPFPbject["comments_count"] as? Int{
             self.commentsCount = commentsCount
         }
+        
+        self.timestamp = postPFPbject.createdAt
     }
     
     class func getArrayOfPosts(postPFObjects: [PFObject]) -> [Post] {
