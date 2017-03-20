@@ -9,7 +9,7 @@
 import UIKit
 import ParseUI
 
-class EditProfileViewController: UIViewController, UIScrollViewDelegate {
+class EditProfileViewController: UIViewController, UIScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     
     @IBOutlet weak var editProfileScrollView: UIScrollView!
@@ -67,10 +67,10 @@ class EditProfileViewController: UIViewController, UIScrollViewDelegate {
             
             if let profileImage = meUserObj.profileImage{
                 self.profileImageView.file = profileImage
-                self.profileImageView.layer.cornerRadius = 50.0
-                self.profileImageView.layer.masksToBounds = true
                 self.profileImageView.loadInBackground()
             }
+            self.profileImageView.layer.cornerRadius = 50.0
+            self.profileImageView.layer.masksToBounds = true
         }
     }
     
@@ -95,7 +95,7 @@ class EditProfileViewController: UIViewController, UIScrollViewDelegate {
     
     @IBAction func onSaveButtonTapped(_ sender: Any) {
         if self.validateFormFields(){
-            User.updateMyProfile(name: self.nameTextField.text, username: self.usernameTextField.text, bio: self.bioTextField.text, website: self.getUrlFromString(urlString: self.websiteTextField.text), email: self.emailTextField.text, phone: self.phoneTextField.text, gender: nil, profileImage: self.profileImageView.file, success: { (updatedUser: PFUser) in
+            User.updateMyProfile(name: self.nameTextField.text, username: self.usernameTextField.text, bio: self.bioTextField.text, website: self.getUrlFromString(urlString: self.websiteTextField.text), email: self.emailTextField.text, phone: self.phoneTextField.text, gender: nil, profileImage: Post.getPFFileFromImage(image: self.profileImageView.image), success: { (updatedUser: PFUser) in
                 //            PFUser.current() = updatedUser
                 self.dismiss(animated: true, completion: nil)
             }) { (error: Error) in
@@ -108,7 +108,36 @@ class EditProfileViewController: UIViewController, UIScrollViewDelegate {
     }
 
     @IBAction func onChangePhotoButtonTapped(_ sender: Any) {
+        self.instantiateUIImagePickerController()
+    }
+    
+    func instantiateUIImagePickerController(){
+        let vc = UIImagePickerController()
+        vc.delegate = self
+        vc.allowsEditing = true
+        vc.sourceType = UIImagePickerControllerSourceType.photoLibrary
         
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+//        print("didFinishPickingMediaWithInfo called")
+        // Get the image captured by the UIImagePickerController
+        let originalImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        self.profileImageView.image = self.resize(image: originalImage, newSize: CGSize(width: 100.0, height: 100.0))
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func resize(image: UIImage, newSize: CGSize) -> UIImage {
+        let resizeImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
+        resizeImageView.contentMode = UIViewContentMode.scaleAspectFill
+        resizeImageView.image = image
+        
+        UIGraphicsBeginImageContext(resizeImageView.frame.size)
+        resizeImageView.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
     }
     
     func validateFormFields() -> Bool{

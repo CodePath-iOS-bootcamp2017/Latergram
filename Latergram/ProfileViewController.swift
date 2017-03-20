@@ -70,13 +70,13 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             }
             
             if let profileImage = user.profileImage{
-                headerView.userProfileImageView.layer.cornerRadius = 50.0
-                headerView.userProfileImageView.layer.masksToBounds = true
                 headerView.userProfileImageView.file = profileImage
                 headerView.userProfileImageView.loadInBackground()
             }else{
                 headerView.userProfileImageView.image = UIImage(named: "avatar")
             }
+            headerView.userProfileImageView.layer.cornerRadius = 50.0
+            headerView.userProfileImageView.layer.masksToBounds = true
             
             if let bio = user.bio{
                 headerView.descriptionLabel.isHidden = false
