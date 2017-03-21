@@ -12,7 +12,7 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
 
     @IBOutlet weak var nextButton: UIBarButtonItem!
     @IBOutlet weak var cameraImageView: UIImageView!
-    
+    var delegate: NewPostDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +45,10 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         let vc = UIImagePickerController()
         vc.delegate = self
         vc.allowsEditing = true
-        vc.sourceType = UIImagePickerControllerSourceType.camera
+        
+        let isCameraSourceAvailable = UIImagePickerController.isSourceTypeAvailable(.camera)
+        
+        vc.sourceType = isCameraSourceAvailable ? UIImagePickerControllerSourceType.camera : UIImagePickerControllerSourceType.photoLibrary
         
         self.present(vc, animated: true, completion: nil)
     }
@@ -78,11 +81,10 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "shareSegue" {
             let vc = segue.destination as! ShareViewController
+            vc.delegate = self.delegate
             if let image = self.cameraImageView.image {
                 vc.shareImage = image
             }
         }
     }
-    
-
 }

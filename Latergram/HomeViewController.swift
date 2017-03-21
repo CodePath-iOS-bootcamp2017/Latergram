@@ -10,7 +10,7 @@ import UIKit
 import SVProgressHUD
 import ParseUI
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NewPostDelegate {
 
     @IBOutlet weak var homeTableView: UITableView!
     @IBOutlet weak var homeImageView: UIImageView!
@@ -27,6 +27,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func onNewPostShare(newPost: Post) {
+        self.posts?.insert(newPost, at: 0)
+        self.homeTableView.reloadData()
     }
     
     fileprivate func setupUI(){
@@ -184,6 +189,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                         vc.userId = self.posts?[index].author?.id
                     }
                     
+                }
+            }
+        }else if segue.identifier == "newPostSegue" {
+            if let tnc = segue.destination as? UITabBarController {
+                let ncs = tnc.viewControllers
+                for nc in ncs! {
+                    let navigationController = nc as! UINavigationController
+                    if let galleryViewController = navigationController.topViewController as? GalleryViewController{
+                        galleryViewController.delegate = self
+                    }else if let cameraViewController = navigationController.topViewController as? CameraViewController {
+                        cameraViewController.delegate = self
+                    }
                 }
             }
         }

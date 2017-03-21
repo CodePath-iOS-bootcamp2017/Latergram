@@ -10,6 +10,10 @@ import UIKit
 import Parse
 import SVProgressHUD
 
+protocol NewPostDelegate {
+    func onNewPostShare(newPost: Post) -> Void
+}
+
 class ShareViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var postImageView: UIImageView!
@@ -18,6 +22,7 @@ class ShareViewController: UIViewController, UITextViewDelegate {
     
     var captionPlaceholderLabel = UILabel()
     var shareImage: UIImage?
+    var delegate: NewPostDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +60,7 @@ class ShareViewController: UIViewController, UITextViewDelegate {
         SVProgressHUD.show()
         Post.createNewPost(picture: self.shareImage, caption: self.captionTextView.text, location: self.locationTextField.text ,success: { (response: PFObject) in
             print("Posted successfully. Post ID: \(response.objectId)")
+            self.delegate?.onNewPostShare(newPost: Post(postPFPbject: response))
             SVProgressHUD.dismiss()
             self.dismiss(animated: true, completion: nil)
         }) { (error: Error) in

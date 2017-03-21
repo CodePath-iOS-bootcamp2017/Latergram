@@ -18,7 +18,7 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     var images: [UIImage] = []
     var photo: UIImage?
-    
+    var delegate: NewPostDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -151,6 +151,7 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "shareSegue" {
             let vc = segue.destination as! ShareViewController
+            vc.delegate = self.delegate
             if let image = self.selectedImageView.image {
                 vc.shareImage = image
             }else{
