@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import SVProgressHUD
 
 class ShareViewController: UIViewController, UITextViewDelegate {
 
@@ -28,14 +29,14 @@ class ShareViewController: UIViewController, UITextViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func setupUI(){
+    fileprivate func setupUI(){
         self.configureTextView()
         if let image = self.shareImage{
             self.postImageView.image = image
         }
     }
     
-    func configureTextView(){
+    fileprivate func configureTextView(){
         self.captionTextView.delegate = self
         self.captionTextView.text = ""
         self.captionPlaceholderLabel.text = "Add a caption"
@@ -51,12 +52,14 @@ class ShareViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func onShareButtonTapped(_ sender: Any) {
-
-        Post.createNewPost(picture: self.shareImage, caption: self.captionTextView.text, success: { (response: PFObject) in
+        SVProgressHUD.show()
+        Post.createNewPost(picture: self.shareImage, caption: self.captionTextView.text, location: self.locationTextField.text ,success: { (response: PFObject) in
             print("Posted successfully. Post ID: \(response.objectId)")
+            SVProgressHUD.dismiss()
             self.dismiss(animated: true, completion: nil)
         }) { (error: Error) in
             print(error.localizedDescription)
+            SVProgressHUD.dismiss()
         }
     }
     

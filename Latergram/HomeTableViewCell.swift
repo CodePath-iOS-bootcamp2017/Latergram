@@ -13,6 +13,7 @@ class HomeTableViewCell: UITableViewCell {
     
     @IBOutlet weak var postImageView: PFImageView!
     @IBOutlet weak var captionLabel: UILabel!
+    @IBOutlet weak var postImageHeightContraint: NSLayoutConstraint!
     
     var post: Post?{
         didSet{

@@ -38,7 +38,7 @@ class EditProfileViewController: UIViewController, UIScrollViewDelegate, UIImage
         super.didReceiveMemoryWarning()
     }
     
-    func updateUI(){
+    fileprivate func updateUI(){
         if let me = PFUser.current() {
             let meUserObj = User(userPFObject: me)
             
@@ -75,12 +75,12 @@ class EditProfileViewController: UIViewController, UIScrollViewDelegate, UIImage
         }
     }
     
-    func configureScrollView(){
+    fileprivate func configureScrollView(){
         self.editProfileScrollView.delegate = self
         self.updateScrollViewContentSize()
     }
     
-    func updateScrollViewContentSize(){
+    fileprivate func updateScrollViewContentSize(){
         let width = self.editProfileScrollView.bounds.width
         let height = self.privateInformationStackView.frame.maxY + 100.0
         self.editProfileScrollView.contentSize = CGSize(width: width, height: height)
@@ -115,7 +115,7 @@ class EditProfileViewController: UIViewController, UIScrollViewDelegate, UIImage
         self.instantiateUIImagePickerController()
     }
     
-    func instantiateUIImagePickerController(){
+    fileprivate func instantiateUIImagePickerController(){
         let vc = UIImagePickerController()
         vc.delegate = self
         vc.allowsEditing = true
@@ -132,7 +132,7 @@ class EditProfileViewController: UIViewController, UIScrollViewDelegate, UIImage
         dismiss(animated: true, completion: nil)
     }
     
-    func resize(image: UIImage, newSize: CGSize) -> UIImage {
+    fileprivate func resize(image: UIImage, newSize: CGSize) -> UIImage {
         let resizeImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
         resizeImageView.contentMode = UIViewContentMode.scaleAspectFill
         resizeImageView.image = image
@@ -144,7 +144,7 @@ class EditProfileViewController: UIViewController, UIScrollViewDelegate, UIImage
         return newImage!
     }
     
-    func validateFormFields() -> Bool{
+    fileprivate func validateFormFields() -> Bool{
         if let websiteString = self.websiteTextField.text{
             if !websiteString.isEmpty{
                 if self.getUrlFromString(urlString: websiteString) == nil{
@@ -155,7 +155,7 @@ class EditProfileViewController: UIViewController, UIScrollViewDelegate, UIImage
         return true
     }
     
-    func getUrlFromString(urlString: String?) -> URL?{
+    fileprivate func getUrlFromString(urlString: String?) -> URL?{
         if let url = urlString{
             return URL(string: url)
         }

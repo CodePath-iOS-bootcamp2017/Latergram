@@ -8,14 +8,15 @@
 
 import UIKit
 import Parse
+import SVProgressHUD
 
-class ProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class ProfileViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var homeImageView: UIImageView!
     @IBOutlet weak var plusImageView: UIImageView!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var profileCollectionView: UICollectionView!
-
+    @IBOutlet weak var profileCollectionFlowLayout: UICollectionViewFlowLayout!
     var userId: String?
     var userPosts: [Post]?
     var user: PFUser?
@@ -36,9 +37,18 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         // Dispose of any resources that can be recreated.
     }
     
-    func setupCollectionView(){
+    fileprivate func setupCollectionView(){
         self.profileCollectionView.delegate = self
         self.profileCollectionView.dataSource = self
+        
+        self.profileCollectionFlowLayout.scrollDirection = .vertical
+        self.profileCollectionFlowLayout.minimumInteritemSpacing = 2
+        self.profileCollectionFlowLayout.minimumLineSpacing = 2
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = UIScreen.main.bounds.width/3 - 2.0
+        return CGSize(width: width, height: width)
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -106,7 +116,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         return headerView
     }
     
-    func setupGestureRecognizers(){
+    fileprivate func setupGestureRecognizers(){
         let plusGesture = UITapGestureRecognizer()
         plusGesture.addTarget(self, action: #selector(onPlusTapped))
         self.plusImageView.addGestureRecognizer(plusGesture)
@@ -134,10 +144,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     func onProfileTapped(_ sender: Any) {
         self.userId = PFUser.current()?.objectId
         self.user = PFUser.current()
-        self.profileCollectionView.reloadData()
+        self.loadUserData()
     }
     
-    func loadUserData(){
+    fileprivate func loadUserData(){
+        SVProgressHUD.show()
         if let userId = self.userId{
             ParseClient.sharedInstance.getUser(userId: userId, success: { (user: PFUser) in
                 self.user = user
@@ -152,16 +163,19 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
     }
     
-    func loadUserPosts(user: PFUser){
+    fileprivate func loadUserPosts(user: PFUser){
+        self.setupNavigationBar()
         Post.fetchUserPosts(user: user, success: { (response: [Post]) in
             self.userPosts = response
             self.profileCollectionView.reloadData()
+            SVProgressHUD.dismiss()
         }) { (error: Error) in
             print("Error in fetching user posts: \(error.localizedDescription)")
+            SVProgressHUD.dismiss()
         }
     }
     
-    func setupLogoutButton(){
+    fileprivate func setupLogoutButton(){
         print("setupLogoutButton")
         let logoutButton = UIButton(type: UIButtonType.system)
         logoutButton.setTitle("logout", for: UIControlState.normal)
@@ -178,14 +192,27 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "User_Logged_out"), object: nil)
     }
     
-    /*
+    fileprivate func setupNavigationBar(){
+        let titleLabel = UILabel()
+        titleLabel.frame = CGRect(x: 5, y: 5, width: 200, height: 30)
+        titleLabel.text = self.user?.username
+        let leftBarButton = UIBarButtonItem()
+        leftBarButton.customView = titleLabel
+        self.navigationItem.leftBarButtonItem = leftBarButton
+    }
+    
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if SVProgressHUD.isVisible(){
+            SVProgressHUD.dismiss()
+        }
     }
-    */
+    
 
 }

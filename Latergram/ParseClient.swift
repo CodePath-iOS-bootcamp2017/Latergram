@@ -48,7 +48,7 @@ class ParseClient: NSObject {
         }
     }
     
-    func newPost(media: PFFile?, caption: String?, success: @escaping (PFObject)-> Void, failure: @escaping (Error) -> Void){
+    func newPost(media: PFFile?, caption: String?, location: String?, success: @escaping (PFObject)-> Void, failure: @escaping (Error) -> Void){
         let post = PFObject(className: postClassName)
         
         if let postImage = media {
@@ -57,6 +57,10 @@ class ParseClient: NSObject {
         
         if let postCaption = caption{
             post["caption"] = postCaption
+        }
+        
+        if let location = location{
+            post["location"] = location
         }
         
         post["author"] = PFUser.current()

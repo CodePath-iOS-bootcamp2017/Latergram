@@ -35,6 +35,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onLoginTapped(_ sender: Any) {
+        self.closeKeypad()
         if validateFields() {
             SVProgressHUD.show()
             let username = self.usernameTextField.text!
@@ -54,6 +55,7 @@ class LoginViewController: UIViewController {
 
     
     @IBAction func onSignupTapped(_ sender: Any) {
+        self.closeKeypad()
         if validateFields() {
             SVProgressHUD.show()
             let username = self.usernameTextField.text!
@@ -69,7 +71,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    func validateFields() -> Bool{
+    fileprivate func validateFields() -> Bool{
         if let username = self.usernameTextField.text{
             if username.isEmpty {
                 self.presentAlertController(title: "Sorry!", message: "Username is required")
@@ -91,6 +93,10 @@ class LoginViewController: UIViewController {
         self.present(self.alertController, animated: true, completion: nil)
     }
     
+    fileprivate func closeKeypad(){
+        self.usernameTextField.resignFirstResponder()
+        self.passwordTextField.resignFirstResponder()
+    }
     /*
     // MARK: - Navigation
 

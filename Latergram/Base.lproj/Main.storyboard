@@ -60,12 +60,21 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="latergram" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ASb-TG-AwH">
+                                <rect key="frame" x="38" y="120" width="300" height="51"/>
+                                <color key="backgroundColor" red="0.9231315403" green="0.9231315403" blue="0.9231315403" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="33"/>
+                                <color key="textColor" red="0.9030740598" green="0.50579019030000005" blue="0.51796851690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ASb-TG-AwH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Bi5-xw-SQC"/>
                             <constraint firstItem="Ajk-Pp-7Os" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="C3N-yb-iXl"/>
                             <constraint firstItem="Ice-iB-nxE" firstAttribute="top" secondItem="yXu-I3-Ecx" secondAttribute="bottom" constant="22" id="Ei5-4V-CKV"/>
                             <constraint firstItem="Ice-iB-nxE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ki5-TD-FjN"/>
+                            <constraint firstItem="ASb-TG-AwH" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="OTO-3z-5Pd"/>
                             <constraint firstItem="Ajk-Pp-7Os" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.7" id="SRd-zn-zN7"/>
                             <constraint firstItem="MrU-3Y-OWH" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="UAX-ID-eeQ"/>
                             <constraint firstItem="vOw-tQ-0sr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XZp-lU-oPR"/>
@@ -79,6 +88,7 @@
                             <constraint firstItem="MrU-3Y-OWH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="lFi-ZO-PVc"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Ice-iB-nxE" secondAttribute="bottom" constant="20" id="sdV-E4-oLR"/>
                             <constraint firstItem="yXu-I3-Ecx" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.7" constant="1" id="wAK-kr-ADZ"/>
+                            <constraint firstItem="ASb-TG-AwH" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="100" id="xDS-xb-12x"/>
                         </constraints>
                     </view>
                     <connections>
@@ -89,7 +99,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="122" y="44"/>
+            <point key="canvasLocation" x="120.8" y="43.628185907046479"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="qTR-Vd-Yru">
@@ -103,32 +113,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="234" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lHf-iw-gMS">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="301" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lHf-iw-gMS">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HomeTableViewCell" rowHeight="234" id="5jd-c5-g2G" customClass="HomeTableViewCell" customModule="Latergram" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="234"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HomeTableViewCell" rowHeight="301" id="5jd-c5-g2G" customClass="HomeTableViewCell" customModule="Latergram" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="301"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5jd-c5-g2G" id="0bz-z1-oFS">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="233"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="300.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xdl-ZN-nPE" customClass="PFImageView">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="200" id="rdR-fy-PpE"/>
+                                                        <constraint firstAttribute="height" constant="250" id="rdR-fy-PpE"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="this a sample caption" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdx-Ze-m8i">
-                                                    <rect key="frame" x="8" y="208" width="115" height="14"/>
+                                                    <rect key="frame" x="8" y="258" width="115" height="29.5"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                     <color key="textColor" red="0.56162969559585485" green="0.56162969559585485" blue="0.56162969559585485" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="rdx-Ze-m8i" secondAttribute="bottom" constant="3" id="4QU-Cy-hBg"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="rdx-Ze-m8i" secondAttribute="bottom" constant="5" id="4QU-Cy-hBg"/>
                                                 <constraint firstItem="xdl-ZN-nPE" firstAttribute="width" secondItem="0bz-z1-oFS" secondAttribute="width" id="8Dn-WK-xn4"/>
                                                 <constraint firstItem="xdl-ZN-nPE" firstAttribute="leading" secondItem="0bz-z1-oFS" secondAttribute="leading" id="WA5-sq-mZT"/>
                                                 <constraint firstItem="xdl-ZN-nPE" firstAttribute="top" secondItem="0bz-z1-oFS" secondAttribute="top" id="dBG-lF-nhL"/>
@@ -139,6 +149,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="captionLabel" destination="rdx-Ze-m8i" id="fxW-7X-xJs"/>
+                                            <outlet property="postImageHeightContraint" destination="rdR-fy-PpE" id="UwX-eC-oMg"/>
                                             <outlet property="postImageView" destination="xdl-ZN-nPE" id="mwa-dg-Ove"/>
                                         </connections>
                                     </tableViewCell>
@@ -359,9 +370,10 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="0.9231298575129534" green="0.9231298575129534" blue="0.9231298575129534" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="pHA-cf-psM" firstAttribute="top" secondItem="kmF-FF-2wF" secondAttribute="bottom" id="0tn-36-yYm"/>
                             <constraint firstAttribute="trailing" secondItem="9Py-eg-a5F" secondAttribute="trailing" id="1c1-HE-rLb"/>
@@ -376,6 +388,7 @@
                     <connections>
                         <outlet property="homeImageView" destination="xtz-Ib-Acj" id="sL0-Te-itB"/>
                         <outlet property="plusImageView" destination="0zq-nI-OI6" id="ill-cV-bC7"/>
+                        <outlet property="profileCollectionFlowLayout" destination="Ikb-Mw-If6" id="QLi-5s-bP7"/>
                         <outlet property="profileCollectionView" destination="9Py-eg-a5F" id="eS1-t5-HK9"/>
                         <outlet property="profileImageView" destination="miZ-vr-Ri7" id="6Qq-4B-sxF"/>
                         <segue destination="Mlx-h1-MIP" kind="presentation" identifier="newPostSegue" id="Wh1-J6-ysX"/>
@@ -607,7 +620,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MRV-7Z-J4k">
-                                                        <rect key="frame" x="30" y="0.0" width="307" height="20"/>
+                                                        <rect key="frame" x="30" y="0.0" width="307.5" height="20"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </pickerView>
                                                 </subviews>
@@ -890,7 +903,34 @@
                     <view key="view" contentMode="scaleToFill" id="NdJ-CW-KAL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fGA-8p-eW3">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YHk-NS-4Ln">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="454"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LJG-hI-bLg">
+                                        <rect key="frame" x="137.5" y="454" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="ZpI-a8-YY1"/>
+                                            <constraint firstAttribute="width" constant="100" id="lT5-Uu-Mkt"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="click"/>
+                                        <connections>
+                                            <action selector="onCameraTapped:" destination="EEM-i2-ZeO" eventType="touchUpInside" id="EYs-WK-7CV"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fGA-8p-eW3" firstAttribute="top" secondItem="5yy-aD-QHs" secondAttribute="bottom" id="GBG-1V-YsF"/>
+                            <constraint firstAttribute="trailing" secondItem="fGA-8p-eW3" secondAttribute="trailing" id="Z1K-yy-JDs"/>
+                            <constraint firstItem="fGA-8p-eW3" firstAttribute="leading" secondItem="NdJ-CW-KAL" secondAttribute="leading" id="fMl-au-fjh"/>
+                            <constraint firstItem="0Ng-eU-Eg1" firstAttribute="top" secondItem="fGA-8p-eW3" secondAttribute="bottom" id="rGU-cL-RIR"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="n0J-5D-g0c">
                         <barButtonItem key="leftBarButtonItem" title="Close" id="TIr-mM-cMx">
@@ -898,17 +938,27 @@
                                 <action selector="onCloseTapped:" destination="EEM-i2-ZeO" id="Cra-Da-RdF"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="Cg8-9y-CMB">
+                            <connections>
+                                <action selector="onNextTapped:" destination="EEM-i2-ZeO" id="yUo-6t-uO5"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="cameraImageView" destination="YHk-NS-4Ln" id="9W2-PL-ggp"/>
+                        <outlet property="nextButton" destination="Cg8-9y-CMB" id="NGq-S3-2xM"/>
+                        <segue destination="jaO-G7-2IN" kind="show" identifier="shareSegue" id="U8v-Oi-Em8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wKK-PW-0NB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5390" y="462"/>
+            <point key="canvasLocation" x="5389.6000000000004" y="461.91904047976016"/>
         </scene>
         <!--Gallery-->
         <scene sceneID="pnf-rM-0nT">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mbe-su-Vje" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Gallery" id="NQv-2x-AQh"/>
+                    <tabBarItem key="tabBarItem" title="Gallery" image="gallery" id="NQv-2x-AQh"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="v3P-xH-Lah">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -927,7 +977,7 @@
         <scene sceneID="a4W-Nl-ao3">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ED2-Ed-czm" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Camera" id="WPU-UJ-8KG"/>
+                    <tabBarItem key="tabBarItem" title="Camera" image="camera" id="WPU-UJ-8KG"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eku-Tp-dSf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -983,7 +1033,10 @@
         <image name="avatar" width="100" height="100"/>
         <image name="background" width="1500" height="1000"/>
         <image name="bio" width="15" height="15"/>
+        <image name="camera" width="30" height="30"/>
+        <image name="click" width="200" height="200"/>
         <image name="email" width="15" height="15"/>
+        <image name="gallery" width="30" height="30"/>
         <image name="gender" width="15" height="15"/>
         <image name="home" width="40" height="40"/>
         <image name="name" width="15" height="15"/>
@@ -995,5 +1048,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Wh1-J6-ysX"/>
+        <segue reference="U8v-Oi-Em8"/>
     </inferredMetricsTieBreakers>
 </document>

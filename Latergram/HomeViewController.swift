@@ -21,10 +21,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupTableView()
-        self.setupGestureRecognizers()
-        self.configureRefreshControl()
-        self.loadDataFromNetwork()
+        self.setupUI()
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,7 +29,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Dispose of any resources that can be recreated.
     }
     
-    func setupTableView(){
+    fileprivate func setupUI(){
+        self.navigationItem.title = "Latergram"
+        self.setupTableView()
+        self.setupGestureRecognizers()
+        self.configureRefreshControl()
+        self.loadDataFromNetwork()
+    }
+    
+    fileprivate func setupTableView(){
         self.homeTableView.tableFooterView = UIView()
         self.homeTableView.delegate = self
         self.homeTableView.dataSource = self
@@ -48,6 +53,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTableViewCell", for: indexPath) as! HomeTableViewCell
         cell.post = self.posts?[indexPath.section]
+        cell.postImageHeightContraint.constant = UIScreen.main.bounds.width
         return cell
     }
     
@@ -64,58 +70,49 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
-        headerView.backgroundColor = UIColor(white: 1, alpha: 0.9)
         
-        let userProfileImageView = PFImageView(frame: CGRect(x: 10, y: 10, width: 30, height: 30))
-        userProfileImageView.clipsToBounds = true
-        userProfileImageView.layer.cornerRadius = 15;
-        userProfileImageView.layer.borderColor = UIColor(white: 0.7, alpha: 0.8).cgColor
-        userProfileImageView.layer.borderWidth = 1;
+        let headerView = Bundle.main.loadNibNamed("HomeTableSectionHeader", owner: self, options: nil)?.first as! HomeTableSectionHeader
+        headerView.sectionNumber = section
         
-        // setting avatar image
-        userProfileImageView.file = self.posts?[section].author?.profileImage
-        userProfileImageView.loadInBackground()
-        headerView.addSubview(userProfileImageView)
+        if let post = self.posts?[section]{
+            if let profileImageFile = post.author?.profileImage{
+                headerView.profileImageView.file = profileImageFile
+                headerView.profileImageView.loadInBackground()
+            }
+            
+            if let username = post.author?.username{
+                headerView.usernameLabel.text = username
+            }
+            
+            if let location = post.location{
+                headerView.locationLabel.isHidden = false
+                headerView.locationLabel.text = location
+            }else{
+                headerView.locationLabel.isHidden = true
+            }
+            
+            if let timestamp = post.timestamp{
+                headerView.timestampLabel.text = Date().offsetFrom(timestamp)
+            }
+        }
         
         // gesture for avatar image
         let profileTapGesture = UITapGestureRecognizer()
         profileTapGesture.addTarget(self, action: #selector(onUserAvatarTapped))
-        userProfileImageView.addGestureRecognizer(profileTapGesture)
-        userProfileImageView.isUserInteractionEnabled = true
-        
-        // UILabel for the username
-        let usernameLabel = UILabel()
-        usernameLabel.frame = CGRect(x: 45, y: 10, width: 500, height: 30)
-        //        label.clipsToBounds = true
-        usernameLabel.text = self.posts?[section].author?.username
-        usernameLabel.textColor = UIColor.black
-        let fontSize: CGFloat = 15.0
-        usernameLabel.font = usernameLabel.font.withSize(fontSize)
-        headerView.addSubview(usernameLabel)
-        
+        headerView.profileImageView.addGestureRecognizer(profileTapGesture)
+        headerView.profileImageView.isUserInteractionEnabled = true
+
         // gesture for username
         let usernameTapGesture = UITapGestureRecognizer()
         usernameTapGesture.addTarget(self, action: #selector(onUsernameTapped))
-        usernameLabel.addGestureRecognizer(usernameTapGesture)
-        usernameLabel.isUserInteractionEnabled = true
+        headerView.usernameLabel.addGestureRecognizer(usernameTapGesture)
+        headerView.usernameLabel.isUserInteractionEnabled = true
         
-        // UILabel for the timestamp
-        if let date = self.posts?[section].timestamp{
-            let dateLabel = UILabel()
-            dateLabel.frame = CGRect(x: UIScreen.main.bounds.width-20.0, y: 10, width: 200, height: 30)
-            //        label.clipsToBounds = true
-            dateLabel.text = Date().offsetFrom(date)
-            dateLabel.textColor = UIColor.gray
-            let dateFontSize: CGFloat = 12.0
-            dateLabel.font = dateLabel.font.withSize(dateFontSize)
-            headerView.addSubview(dateLabel)
-        }
         
         return headerView
     }
     
-    func setupGestureRecognizers(){
+    fileprivate func setupGestureRecognizers(){
         let uploadTapGesture = UITapGestureRecognizer()
         uploadTapGesture.addTarget(self, action: #selector(onUploadTapped))
         self.uploadImageView.addGestureRecognizer(uploadTapGesture)
@@ -127,7 +124,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.profileImageView.isUserInteractionEnabled = true
     }
     
-    func configureRefreshControl(){
+    fileprivate func configureRefreshControl(){
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(onRefresh), for: UIControlEvents.valueChanged)
         self.homeTableView.insertSubview(refreshControl, at: 0)
@@ -156,7 +153,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         performSegue(withIdentifier: "showProfileSegue", sender: sender)
     }
     
-    func loadDataFromNetwork(){
+    fileprivate func loadDataFromNetwork(){
         SVProgressHUD.show()
         Post.fetchPosts(success: { (response: [Post]) in
             self.posts = response
@@ -178,20 +175,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         if segue.identifier == "showProfileSegue" {
             if let gestureRecognizer = sender as? UITapGestureRecognizer{
-                if let tappedView = gestureRecognizer.view{
-                    if let cell = tappedView.superview?.superview as? HomeTableViewCell{
-                        if let indexPath = self.homeTableView.indexPath(for: cell) {
-                            let nc = segue.destination as! UINavigationController
-                            let vc = nc.topViewController as! ProfileViewController
-                            vc.userId = self.posts?[indexPath.section].author?.id
-                        }
+                let tappedView = gestureRecognizer.view
+                if let header = tappedView?.superview?.superview as? HomeTableSectionHeader {
+                    print("section number: \(header.sectionNumber)")
+                    if let index = header.sectionNumber {
+                        let nc = segue.destination as! UINavigationController
+                        let vc = nc.topViewController as! ProfileViewController
+                        vc.userId = self.posts?[index].author?.id
                     }
+                    
                 }
             }
         }
     }
-    
-
 }
 
 extension Date {

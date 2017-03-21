@@ -17,6 +17,7 @@ class Post: NSObject {
     var likesCount: Int?
     var commentsCount: Int?
     var timestamp: Date?
+    var location: String?
     
     init(postPFPbject: PFObject) {
         
@@ -43,6 +44,10 @@ class Post: NSObject {
         }
         
         self.timestamp = postPFPbject.createdAt
+        
+        if let location = postPFPbject["location"] as? String{
+            self.location = location
+        }
     }
     
     class func getArrayOfPosts(postPFObjects: [PFObject]) -> [Post] {
@@ -54,9 +59,9 @@ class Post: NSObject {
         return posts
     }
     
-    class func createNewPost(picture: UIImage?, caption: String?, success: @escaping (PFObject) -> Void, failure: @escaping (Error)->Void){
+    class func createNewPost(picture: UIImage?, caption: String?, location: String?, success: @escaping (PFObject) -> Void, failure: @escaping (Error)->Void){
         
-        ParseClient.sharedInstance.newPost(media: getPFFileFromImage(image: picture), caption: caption, success: { (response: PFObject) in
+        ParseClient.sharedInstance.newPost(media: getPFFileFromImage(image: picture), caption: caption, location: location, success: { (response: PFObject) in
             success(response)
         }) { (error: Error) in
             failure(error)

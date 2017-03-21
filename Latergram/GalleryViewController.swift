@@ -31,7 +31,7 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
         // Dispose of any resources that can be recreated.
     }
     
-    func setupCollectionView(){
+    fileprivate func setupCollectionView(){
         self.galleryCollectionView.delegate = self
         self.galleryCollectionView.dataSource = self
         self.galleryCollectionViewFlowLayout.scrollDirection = .vertical
@@ -65,13 +65,13 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
         return calculateCellSize()
     }
     
-    func calculateCellSize() -> CGSize {
+    fileprivate func calculateCellSize() -> CGSize {
         let totalWidth = self.galleryCollectionView.bounds.width
         let cellSideLength = totalWidth/4-2
         return CGSize(width: cellSideLength, height: cellSideLength)
     }
     
-    func fetchCustomAlbumPhotos()
+    fileprivate func fetchCustomAlbumPhotos()
     {
         PHPhotoLibrary.requestAuthorization { (status) in
             switch status
@@ -107,7 +107,7 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
     }
     
-    func addImgToArray(uploadImage:UIImage, imageCount: Int)
+    fileprivate func addImgToArray(uploadImage:UIImage, imageCount: Int)
     {
         self.images.append(uploadImage)
         
@@ -122,9 +122,9 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
     }
     
-    func loadupSelectedImage(photoIndex: Int){
+    fileprivate func loadupSelectedImage(photoIndex: Int){
         DispatchQueue.main.async {
-            self.selectedImageView.image = self.resize(image: self.images[photoIndex], newSize: CGSize(width: UIScreen.main.bounds.width, height:UIScreen.main.bounds.height/2))
+            self.selectedImageView.image = self.resize(image: self.images[photoIndex], newSize: CGSize(width: UIScreen.main.bounds.width, height:UIScreen.main.bounds.width))
         }
     }
     
@@ -132,7 +132,7 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
         self.dismiss(animated: true, completion: nil)
     }
 
-    func resize(image: UIImage, newSize: CGSize) -> UIImage {
+    fileprivate func resize(image: UIImage, newSize: CGSize) -> UIImage {
         let resizeImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
         resizeImageView.contentMode = UIViewContentMode.scaleAspectFill
         resizeImageView.image = image
