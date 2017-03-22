@@ -185,7 +185,7 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     fileprivate func setupLogoutButton(){
-        print("setupLogoutButton")
+//        print("setupLogoutButton")
         let logoutButton = UIButton(type: UIButtonType.system)
         logoutButton.setTitle("logout", for: UIControlState.normal)
         logoutButton.frame = CGRect(x: 0, y: 0, width: 50.0, height: 25.0)
@@ -202,14 +202,37 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     fileprivate func setupNavigationBar(){
+        let titleView = UIView()
+        titleView.frame = CGRect(x: 0, y: 0, width: 300, height: 30)
         let titleLabel = UILabel()
-        titleLabel.frame = CGRect(x: 5, y: 5, width: 200, height: 30)
         titleLabel.text = self.user?.username
+        
+        if self.userId == PFUser.current()?.objectId{
+            titleLabel.frame = CGRect(x: 5, y: 5, width: 200, height: 30)
+        }else{
+            titleLabel.frame = CGRect(x: 50, y: 5, width: 200, height: 30)
+            
+            let closeImageView = UIImageView(image: UIImage(named: "close"))
+            closeImageView.frame = CGRect(x: 0, y: 5, width: 25, height: 25)
+            titleView.addSubview(closeImageView)
+            
+            let closeTapGesture = UITapGestureRecognizer()
+            closeTapGesture.addTarget(self, action: #selector(onCloseTapped))
+            closeImageView.addGestureRecognizer(closeTapGesture)
+            closeImageView.isUserInteractionEnabled = true
+        }
+        
+        titleView.addSubview(titleLabel)
+        
+        
         let leftBarButton = UIBarButtonItem()
-        leftBarButton.customView = titleLabel
+        leftBarButton.customView = titleView
         self.navigationItem.leftBarButtonItem = leftBarButton
     }
     
+    func onCloseTapped(_ sender: Any){
+        dismiss(animated: true, completion: nil)
+    }
     
     // MARK: - Navigation
 
