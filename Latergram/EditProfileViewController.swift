@@ -138,7 +138,7 @@ class EditProfileViewController: UIViewController, UIScrollViewDelegate, UIImage
     
     fileprivate func updateScrollViewContentSize(){
         let width = self.editProfileScrollView.bounds.width
-        let height = self.privateInformationStackView.frame.maxY + 100.0
+        let height = self.privateInformationStackView.frame.maxY + 400.0
         self.editProfileScrollView.contentSize = CGSize(width: width, height: height)
     }
     
@@ -147,10 +147,12 @@ class EditProfileViewController: UIViewController, UIScrollViewDelegate, UIImage
     }
     
     @IBAction func onCloseButtonTapped(_ sender: Any) {
+        self.closeKeypad()
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func onSaveButtonTapped(_ sender: Any) {
+        self.closeKeypad()
         if self.validateFormFields(){
             SVProgressHUD.show()
             User.updateMyProfile(name: self.nameTextField.text, username: self.usernameTextField.text, bio: self.bioTextField.text, website: self.getUrlFromString(urlString: self.websiteTextField.text), email: self.emailTextField.text, phone: self.phoneTextField.text, gender: self.selectedGender, profileImage: Post.getPFFileFromImage(image: self.profileImageView.image), success: { (updatedUser: PFUser) in
@@ -217,6 +219,20 @@ class EditProfileViewController: UIViewController, UIScrollViewDelegate, UIImage
         
         return nil
     }
+    
+    fileprivate func closeKeypad(){
+        self.nameTextField.resignFirstResponder()
+        self.usernameTextField.resignFirstResponder()
+        self.bioTextField.resignFirstResponder()
+        self.websiteTextField.resignFirstResponder()
+        self.emailTextField.resignFirstResponder()
+        self.phoneTextField.resignFirstResponder()
+    }
+    
+    @IBAction func onBackgroundTapped(_ sender: Any) {
+        self.closeKeypad()
+    }
+    
     /*
     // MARK: - Navigation
 

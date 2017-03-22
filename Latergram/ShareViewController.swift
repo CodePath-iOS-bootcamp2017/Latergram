@@ -57,6 +57,7 @@ class ShareViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func onShareButtonTapped(_ sender: Any) {
+        self.closeKeypad()
         SVProgressHUD.show()
         Post.createNewPost(picture: self.shareImage, caption: self.captionTextView.text, location: self.locationTextField.text ,success: { (response: PFObject) in
             print("Posted successfully. Post ID: \(response.objectId)")
@@ -67,6 +68,15 @@ class ShareViewController: UIViewController, UITextViewDelegate {
             print(error.localizedDescription)
             SVProgressHUD.dismiss()
         }
+    }
+    
+    fileprivate func closeKeypad(){
+        self.captionTextView.resignFirstResponder()
+        self.locationTextField.resignFirstResponder()
+    }
+    
+    @IBAction func onBackgroundTapped(_ sender: Any) {
+        self.closeKeypad()
     }
     
     /*

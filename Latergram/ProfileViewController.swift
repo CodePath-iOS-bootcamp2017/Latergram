@@ -244,6 +244,15 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
         if SVProgressHUD.isVisible(){
             SVProgressHUD.dismiss()
         }
+        
+        if segue.identifier == "detailsSegue" {
+            let detailViewController = segue.destination as! DetailViewController
+            let cell = sender as! ProfileCollectionViewCell
+            if let indexpath = self.profileCollectionView.indexPath(for: cell){
+                detailViewController.post = self.userPosts?[indexpath.row]
+            }
+            
+        }
     }
     
 

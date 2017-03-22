@@ -97,6 +97,11 @@ class LoginViewController: UIViewController {
         self.usernameTextField.resignFirstResponder()
         self.passwordTextField.resignFirstResponder()
     }
+    
+    @IBAction func onBackgroundTap(_ sender: Any) {
+        self.closeKeypad()
+    }
+    
     /*
     // MARK: - Navigation
 
