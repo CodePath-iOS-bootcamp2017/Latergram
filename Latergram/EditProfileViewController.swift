@@ -10,7 +10,7 @@ import UIKit
 import ParseUI
 import SVProgressHUD
 
-class EditProfileViewController: UIViewController, UIScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class EditProfileViewController: UIViewController, UIScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
     
     @IBOutlet weak var editProfileScrollView: UIScrollView!
@@ -24,8 +24,12 @@ class EditProfileViewController: UIViewController, UIScrollViewDelegate, UIImage
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var genderPickerView: UIPickerView!
     
+    fileprivate var selectedGender: String?
+    
+    let genderData = ["Not Specified", "Male", "Female"]
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupGenderPickerView()
         self.updateUI()
     }
     
@@ -36,6 +40,44 @@ class EditProfileViewController: UIViewController, UIScrollViewDelegate, UIImage
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    fileprivate func setupGenderPickerView(){
+        self.genderPickerView.delegate = self
+        self.genderPickerView.dataSource = self
+        self.genderPickerView.reloadAllComponents()
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 3
+    }
+    /*
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return self.genderData[row]
+    }
+    */
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let genderDataLabel = UILabel()
+        genderDataLabel.text = self.genderData[row]
+        genderDataLabel.font = UIFont(name: "System", size: 10.0)
+        return genderDataLabel
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        switch row{
+        case 0:
+            self.selectedGender = "Not Specified"
+        case 1:
+            self.selectedGender = "Male"
+        case 2:
+            self.selectedGender = "Female"
+        default:
+            self.selectedGender = "Not Specified"
+        }
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
     }
     
     fileprivate func updateUI(){
@@ -70,6 +112,20 @@ class EditProfileViewController: UIViewController, UIScrollViewDelegate, UIImage
                 self.profileImageView.file = profileImage
                 self.profileImageView.loadInBackground()
             }
+            
+            if let gender = meUserObj.gender{
+                switch gender {
+                case "Not Specified":
+                    self.genderPickerView.selectRow(0, inComponent: 0, animated: true)
+                case "Male":
+                    self.genderPickerView.selectRow(1, inComponent: 0, animated: true)
+                case "Female":
+                    self.genderPickerView.selectRow(2, inComponent: 0, animated: true)
+                default:
+                    self.genderPickerView.selectRow(0, inComponent: 0, animated: true)
+                }
+            }
+            
             self.profileImageView.layer.cornerRadius = 50.0
             self.profileImageView.layer.masksToBounds = true
         }
@@ -97,7 +153,7 @@ class EditProfileViewController: UIViewController, UIScrollViewDelegate, UIImage
     @IBAction func onSaveButtonTapped(_ sender: Any) {
         if self.validateFormFields(){
             SVProgressHUD.show()
-            User.updateMyProfile(name: self.nameTextField.text, username: self.usernameTextField.text, bio: self.bioTextField.text, website: self.getUrlFromString(urlString: self.websiteTextField.text), email: self.emailTextField.text, phone: self.phoneTextField.text, gender: nil, profileImage: Post.getPFFileFromImage(image: self.profileImageView.image), success: { (updatedUser: PFUser) in
+            User.updateMyProfile(name: self.nameTextField.text, username: self.usernameTextField.text, bio: self.bioTextField.text, website: self.getUrlFromString(urlString: self.websiteTextField.text), email: self.emailTextField.text, phone: self.phoneTextField.text, gender: self.selectedGender, profileImage: Post.getPFFileFromImage(image: self.profileImageView.image), success: { (updatedUser: PFUser) in
                 SVProgressHUD.dismiss()
                 self.dismiss(animated: true, completion: nil)
             }) { (error: Error) in
@@ -108,7 +164,6 @@ class EditProfileViewController: UIViewController, UIScrollViewDelegate, UIImage
         }else{
             AlertView.sharedInstance.presentAlertController(viewController: self, title: "Error!", message: "Invalid Website URL")
         }
-        
     }
 
     @IBAction func onChangePhotoButtonTapped(_ sender: Any) {
