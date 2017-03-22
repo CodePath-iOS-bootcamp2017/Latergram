@@ -95,7 +95,8 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
                 headerView.descriptionLabel.isHidden = true
             }
             
-            if self.user == PFUser.current(){
+            if self.user?.objectId == PFUser.current()?.objectId{
+                self.activateProfile()
                 headerView.EditProfileButton.isHidden = false
                 headerView.EditProfileButton.layer.borderWidth = 1.0
                 headerView.EditProfileButton.layer.borderColor = UIColor.gray.cgColor
@@ -157,9 +158,11 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
                 print("Error getting the user: \(error.localizedDescription)")
             })
         }else{
-            self.user = PFUser.current()!
+            self.user = PFUser.current()
+            self.userId = PFUser.current()?.objectId
             loadUserPosts(user: PFUser.current()!)
             self.setupLogoutButton()
+            self.activateProfile()
         }
     }
     
@@ -173,6 +176,12 @@ class ProfileViewController: UIViewController, UICollectionViewDelegate, UIColle
             print("Error in fetching user posts: \(error.localizedDescription)")
             SVProgressHUD.dismiss()
         }
+    }
+    
+    fileprivate func activateProfile(){
+        self.homeImageView.image = UIImage(named: "home")
+        self.profileImageView.image = UIImage(named: "profile_black")
+        self.plusImageView.image = UIImage(named: "plus")
     }
     
     fileprivate func setupLogoutButton(){

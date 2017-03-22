@@ -36,10 +36,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     fileprivate func setupUI(){
         self.navigationItem.title = "Latergram"
+        self.activateHome()
         self.setupTableView()
         self.setupGestureRecognizers()
         self.configureRefreshControl()
         self.loadDataFromNetwork()
+    }
+    
+    fileprivate func activateHome(){
+        self.homeImageView.image = UIImage(named: "home_black")
+        self.profileImageView.image = UIImage(named: "profile")
+        self.uploadImageView.image = UIImage(named: "plus")
     }
     
     fileprivate func setupTableView(){

@@ -115,10 +115,8 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
             self.loadupSelectedImage(photoIndex: 0)
         }
         
-        if images.count == imageCount{
-            DispatchQueue.main.async {
-                self.galleryCollectionView.reloadData()
-            }
+        DispatchQueue.main.async {
+            self.galleryCollectionView.reloadData()
         }
     }
     
